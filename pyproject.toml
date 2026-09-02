@@ -4,8 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "useful_functions"
-# version = "26.9.2"
-dynamic = ["version"]
+version = "26.9.2"
 requires-python = ">=3.13"
 authors = [
     { name = "LQEC87", email = "73701602+LQEC87@users.noreply.github.com" }
@@ -44,6 +43,3 @@ classifiers = [
 
 [project.urls]
 Repository = "https://github.com/LQEC87/useful_functions.git"
-
-[tool.setuptools.dynamic]
-version = { attr = "useful_functions.__version__" }

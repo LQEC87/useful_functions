@@ -4,10 +4,12 @@ from .standard import *
 from .utilities import *
 
 
+"""
 import datetime
 
 _today = datetime.date.today()
 __version__ = f"{_today.year % 100}.{_today.month}.{_today.day}"
+"""
 
 
 __all__ = algorithms.__all__ + calcurations.__all__ + standard.__all__ + utilities.__all__
