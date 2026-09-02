@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "useful_functions"
+version = "2026.9.2"
+requires-python = ">=3.13"
+authors = [
+    { name = "LQEC87", email = "73701602+LQEC87@users.noreply.github.com" }
+]
+description = "My useful function collections and moduled it."
+readme = "README.md"
+license = "MIT"
+keywords = [
+    "utility", "math", "mathematics", "high-precision", "fraction", "prime", "utilities", "python",
+    "高精度", "数学", "ユーティリティ", "素数", "計算"
+]
+classifiers = [
+    # 開発ステータス
+    "Development Status :: 3 - Alpha",
+
+    # 対象読者
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+
+    # ライセンス
+    "License :: OSI Approved :: MIT License",
+
+    # 動作環境
+    "Operating System :: OS Independent",
+
+    # プログラミング言語
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+
+    # カテゴリ
+    "Topic :: Utilities",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.urls]
+Repository = "https://github.com/LQEC87/useful_functions.git"
