@@ -10,8 +10,6 @@ from sys import getsizeof
 from typing import Any, Literal
 from uuid import getnode
 
-from narwhals import Object
-
 __all__ = [
     'clearconsole', 
     'xorhash', 
@@ -141,7 +139,7 @@ def get_dir_size_old(path='.'):
             total += get_dir_size_old(full_path)
     return total
 
-def compute_object_size(o: Object, handlers={}):
+def compute_object_size(o: Any, handlers={}):
     "computes `o`object size"
     dict_handler = lambda d: chain.from_iterable(d.items())
     all_handlers = {
