@@ -107,7 +107,7 @@ class Calcurations:
     def prime_factor(cls, n: int):
         "disassemble to prime factors"
         ps = [2, 3, 5, 7, 11, 13, 17, 19]
-        for i in range(24, int(cls.f_root(Fraction(n)))+12, 6):
+        for i in range(24, int(cls.f_root(Fraction(n,2)))+12, 6):
             for t in [i-1, i+1]:
                 for p in ps:
                     if t%p==0:
