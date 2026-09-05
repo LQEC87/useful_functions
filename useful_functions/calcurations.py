@@ -126,7 +126,7 @@ class Calcurations:
                         if t%p==0:
                             break
                         if p*p>t:
-                            print(t)
+                            # print(t)
                             if k%t==0:
                                 while k%t==0:
                                     pf.append(int(t))
@@ -138,7 +138,7 @@ class Calcurations:
                             ps.append(int(t))
                             break
                     else:
-                        print(t)
+                        # print(t)
                         if k%t==0:
                             while k%t==0:
                                 pf.append(int(t))
@@ -168,7 +168,7 @@ class Calcurations:
                         if t%p==0:
                             break
                         if p*p>t:
-                            print(t)
+                            # print(t)
                             if k%t==0:
                                 while k%t==0:
                                     pf.append(int(t))
@@ -180,7 +180,7 @@ class Calcurations:
                             ps.append(int(t))
                             break
                     else:
-                        print(t)
+                        # print(t)
                         if k%t==0:
                             while k%t==0:
                                 pf.append(int(t))
