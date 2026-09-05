@@ -3,7 +3,7 @@ from copy import deepcopy
 from decimal import Decimal
 from enum import Enum
 from fractions import Fraction
-from math import ceil, dist, factorial, log, sqrt
+from math import ceil, dist, factorial, isqrt, log, sqrt
 from random import choices, randint, random
 from typing import Callable, SupportsFloat
 from warnings import catch_warnings, warn
@@ -106,29 +106,90 @@ class Calcurations:
     @classmethod
     def prime_factor(cls, n: int):
         "disassemble to prime factors"
-        ps = [2, 3, 5, 7, 11, 13, 17, 19]
-        for i in range(24, int(cls.f_root(Fraction(n),2))+12, 6):
-            for t in [i-1, i+1]:
-                for p in ps:
-                    if t%p==0:
-                        break
-                    if p*p>t:
+        if n>2**50: # log(n,2)>50
+            ps = [2, 3, 5, 7, 11, 13, 17, 19]
+            pf = list()
+            k = Fraction(n)
+            for p in ps:
+                if k%p==0:
+                    while k%p==0:
+                        pf.append(int(p))
+                        k /= p
+                if p*p>k:
+                    if k!=1:
+                        pf.append(int(p))
+                    return pf
+            for i in range(24, int(cls.i_root(int(k)))+12, 6):
+                tp = [0, 0]
+                for i,t in enumerate([i-1, i+1]):
+                    for p in ps:
+                        if t%p==0:
+                            break
+                        if p*p>t:
+                            print(t)
+                            if k%t==0:
+                                while k%t==0:
+                                    pf.append(int(t))
+                                    k /= t
+                            if t*t>k:
+                                if k!=1:
+                                    pf.append(int(k))
+                                return pf
+                            ps.append(int(t))
+                            break
+                    else:
+                        print(t)
+                        if k%t==0:
+                            while k%t==0:
+                                pf.append(int(t))
+                                k /= t
+                        if t*t>k:
+                            if k!=1:
+                                pf.append(int(k))
+                            return pf
                         ps.append(int(t))
-                        break
-                else:
-                    ps.append(int(t))
-        k = n
-        pf = list()
-        for p in ps:
-            if k%p==0:
-                while k%p==0:
-                    pf.append(int(p))
-                    k /= p
-            if p*p>k:
-                if k!=1:
-                    pf.append(int(k))
-                break
-        return pf
+        else:
+            ps = [2, 3, 5, 7, 11, 13, 17, 19]
+            pf = list()
+            k = n
+            for p in ps:
+                if k%p==0:
+                    while k%p==0:
+                        pf.append(int(p))
+                        k /= p
+                if p*p>k:
+                    if k!=1:
+                        pf.append(int(p))
+                    return pf
+            for i in range(24, int(cls.f_root(Fraction(n),2 if n<100 else ceil(log(n, 10))))+12, 6):
+                tp = [0, 0]
+                for i,t in enumerate([i-1, i+1]):
+                    for p in ps:
+                        if t%p==0:
+                            break
+                        if p*p>t:
+                            print(t)
+                            if k%t==0:
+                                while k%t==0:
+                                    pf.append(int(t))
+                                    k /= t
+                            if t*t>k:
+                                if k!=1:
+                                    pf.append(int(k))
+                                return pf
+                            ps.append(int(t))
+                            break
+                    else:
+                        print(t)
+                        if k%t==0:
+                            while k%t==0:
+                                pf.append(int(t))
+                                k /= t
+                        if t*t>k:
+                            if k!=1:
+                                pf.append(int(k))
+                            return pf
+                        ps.append(int(t))
 
     @staticmethod
     def myprod(l: list[int]):
@@ -195,6 +256,29 @@ class Calcurations:
         comp = cls.myprod([a**b for a,b in zip(ps, expon)])
 
         return comp
+
+    @staticmethod
+    def i_root(a:int,N:int|None=None):
+        "sqrt(a)"
+        if a==0:
+            return 0
+        sign = -1 if a < 0 else 1
+        b = int(a*sign)
+        x = 1 << ((b.bit_length() + 1) // 2)
+
+        if N is not None:
+            for _ in range(N):
+                y = (x + b // x) >> 1
+                if y >= x:
+                    return x*sign
+                x = y
+            return x*sign
+        else:
+            while True:
+                y = (x + b // x) >> 1
+                if y >= x:
+                    return x*sign
+                x = y
     
     @staticmethod
     def f_root(a:Fraction,N:int):
@@ -212,7 +296,8 @@ class Calcurations:
                 except OverflowError:
                     b = Fraction(b.numerator.bit_length()-b.denominator.bit_length())
         for _ in range(N):
-            b = (a + b*b)/(b*2)
+            # b = (a + b*b)/(b*2)
+            b = (b + a/b) / 2
         return b*sign
     
     @staticmethod
